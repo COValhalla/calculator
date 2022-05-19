@@ -17,3 +17,5 @@ const operate = function(a, b, operator) {
         return divide(a, b);
     }
 };
+
+//Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
