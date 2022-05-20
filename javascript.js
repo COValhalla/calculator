@@ -10,11 +10,7 @@ const divide = ((a, b) => {
     }
 });
 
-
-// a / b);
-
-//Create a new function operate that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
-
+//Text based input call to the main four functions that avoids eval();
 const operate = function (a, b, operator) {
     if (operator == '+') {
         return add(a, b);
@@ -41,7 +37,6 @@ let calcObj = {
 
 let operatorsArray = ['+', '-', 'x', '/']
 
-
 document.querySelectorAll('button').forEach(node =>
     node.addEventListener('click', () => {
         //Clear calcObj & display
@@ -55,8 +50,7 @@ document.querySelectorAll('button').forEach(node =>
         else if (calcObj.operator == '') {
             if (+node.textContent <= 9) {//If number press, add to firstVal
                 calcObj.firstVal = calcObj.firstVal + node.textContent;
-            } else if (Boolean(calcObj.firstVal) && operatorsArray.includes(node.textContent)
-            ) {
+            } else if (Boolean(calcObj.firstVal) && operatorsArray.includes(node.textContent)) {
                 calcObj.operator = node.textContent;
             };   
         //Update operator if changes before inputting 2nd number sequence 
@@ -71,7 +65,7 @@ document.querySelectorAll('button').forEach(node =>
         } else if (Boolean(calcObj.firstVal) && operatorsArray.includes(calcObj.operator) &&
             Boolean(calcObj.secondVal) && (node.textContent == '=' || operatorsArray.includes(node.textContent))) {
             
-            
+            //Calculate current math function and move result into firstVal for next function
             let results = operate(+calcObj.firstVal, +calcObj.secondVal, calcObj.operator);
             document.querySelector('p').textContent = results;
             calcObj.firstVal = results;
@@ -84,7 +78,18 @@ document.querySelectorAll('button').forEach(node =>
     })
 );
 
-
-
-//Associate '=' button press with pressing key on keyboard
-//Pressing '=' without having two values should warn the user
+//Keydown logic for pressing buttons. The '=' and '+' have text logic since they return the same keyCode
+keyArray = [27, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 88, 189, 191]
+const keyMap = function (e){
+    if (e.key === '=' || e.key === 'Enter') {
+        document.getElementById('61').click();
+    } else if (e.key === '+'){
+        document.getElementById('107').click();
+    } else if(keyArray.includes(e.keyCode)){
+        document.getElementById(`${e.keyCode}`).click();
+        console.log(e.key)
+    };
+}
+document.addEventListener('keydown', keyMap);
+ 
+//Logic for updating display based on calcObj.firstVal (how to align with results)
