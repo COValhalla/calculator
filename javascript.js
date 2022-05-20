@@ -89,6 +89,14 @@ const keyMap = function (e){
         document.getElementById('106').click();
     }else if(keyArray.includes(e.keyCode)){
         document.getElementById(`${e.keyCode}`).click();
+    }else if (e.keyCode === 8) {
+        if (calcObj.secondVal == ''){
+            calcObj.firstVal = calcObj.firstVal.slice(0, -1);
+            document.querySelector('p').textContent = calcObj.firstVal
+        }else {
+            calcObj.secondVal = calcObj.secondVal.slice(0, -1);
+            document.querySelector('p').textContent = calcObj.secondVal
+        }
     };
 }
 document.addEventListener('keydown', keyMap);
