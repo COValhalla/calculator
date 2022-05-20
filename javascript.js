@@ -89,7 +89,7 @@ const keyMap = function (e){
         document.getElementById('106').click();
     }else if(keyArray.includes(e.keyCode)){
         document.getElementById(`${e.keyCode}`).click();
-    }else if (e.keyCode === 8) {
+    }else if (e.keyCode === 8) {//Backspace functionality
         if (calcObj.secondVal == ''){
             calcObj.firstVal = calcObj.firstVal.slice(0, -1);
             document.querySelector('p').textContent = calcObj.firstVal
@@ -100,5 +100,3 @@ const keyMap = function (e){
     };
 }
 document.addEventListener('keydown', keyMap);
- 
-//Logic for updating display based on calcObj.firstVal (how to align with results)
