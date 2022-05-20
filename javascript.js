@@ -23,8 +23,6 @@ const operate = function (a, b, operator) {
     }
 };
 
-//Create the functions that populate the display when you click the number buttons… you should be storing the ‘display value’ in a variable somewhere for use in the next step.
-
 //Function for storing button value in a variable
 let firstOperand;
 let secondOperand;
@@ -50,6 +48,7 @@ document.querySelectorAll('button').forEach(node =>
         else if (calcObj.operator == '') {
             if (+node.textContent <= 9) {//If number press, add to firstVal
                 calcObj.firstVal = calcObj.firstVal + node.textContent;
+                document.querySelector('p').textContent = calcObj.firstVal;
             } else if (Boolean(calcObj.firstVal) && operatorsArray.includes(node.textContent)) {
                 calcObj.operator = node.textContent;
             };   
@@ -61,14 +60,15 @@ document.querySelectorAll('button').forEach(node =>
         } else if (Boolean(calcObj.firstVal) && calcObj.operator != '' &&
             node.textContent != '=' && +node.textContent <= 9) {
             calcObj.secondVal = calcObj.secondVal + node.textContent;
+            document.querySelector('p').textContent = calcObj.secondVal;
         //Output result on '+, -, /, x' press store result in calcObj.firstVal
         } else if (Boolean(calcObj.firstVal) && operatorsArray.includes(calcObj.operator) &&
             Boolean(calcObj.secondVal) && (node.textContent == '=' || operatorsArray.includes(node.textContent))) {
             
             //Calculate current math function and move result into firstVal for next function
             let results = operate(+calcObj.firstVal, +calcObj.secondVal, calcObj.operator);
-            document.querySelector('p').textContent = results;
             calcObj.firstVal = results;
+            document.querySelector('p').textContent = calcObj.firstVal;
             calcObj.secondVal = '';
             //Store next operator if present on click
             if (operatorsArray.includes(node.textContent)) {
@@ -78,16 +78,17 @@ document.querySelectorAll('button').forEach(node =>
     })
 );
 
-//Keydown logic for pressing buttons. The '=' and '+' have text logic since they return the same keyCode
-keyArray = [27, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 88, 189, 191]
+//Keydown logic for pressing buttons. The '=', '+', and '*' have text logic since they return the same keyCode
+keyArray = [27, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 189, 191]
 const keyMap = function (e){
     if (e.key === '=' || e.key === 'Enter') {
         document.getElementById('61').click();
     } else if (e.key === '+'){
         document.getElementById('107').click();
-    } else if(keyArray.includes(e.keyCode)){
+    } else if (e.key === '*'){
+        document.getElementById('106').click();
+    }else if(keyArray.includes(e.keyCode)){
         document.getElementById(`${e.keyCode}`).click();
-        console.log(e.key)
     };
 }
 document.addEventListener('keydown', keyMap);
