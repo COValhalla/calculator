@@ -7,4 +7,4 @@ https://htmlpreview.github.io/?https://github.com/COValhalla/calculator/blob/mai
 Todo
 - Add negative number support, use - key to change number to negative
 - Add decimal number support
-- Add styling for a more classic calculator look
+- Improve styling. Fixed display.
