@@ -1,8 +1,10 @@
-
 .flex-grid {
     display: flex;
     flex-direction: column;
-    margin: 100px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    min-width: 500px;
 }
 .col {
     flex: 1;
@@ -13,8 +15,14 @@ button{
     font-size: 30px;
     font-weight: bold;
     margin: 4px;
+    border-radius:10px;
+    border-width: 6px;
 }
 .display {
     font-size: 40px;
-    border:brown;
+    font-weight: 400;
+    min-height: 80px;
+    min-width: 420px;
+    border-style:solid;
+    border-width: 4px;
 }
